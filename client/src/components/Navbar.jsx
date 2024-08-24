@@ -21,7 +21,7 @@ const Navbar = () => {
     }
     
   }, [])
-    
+     
   const navItems = <>
    <li><a href='/'>Home</a></li>
       <li>
@@ -47,8 +47,8 @@ const Navbar = () => {
       <li><a>Offers</a></li>
   </>  
   return (
-<header className="max-w-screen-2x1 container mx-auto">
-<div className="navbar xl:px-24">
+<header className="max-w-screen-2x1 container mx-auto transition-all duration-300 ease-in-out">
+<div className={'navbar xl:px-24 $ {isSticky ? "shadow-md bg-base-100 transition-all duration-300 ease-in-out " : "" }'}>
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
