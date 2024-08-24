@@ -3,6 +3,19 @@ import SB from '/SB.png'
 import { FiPhoneCall } from "react-icons/fi";
 
 const Navbar = () => {
+  {/*const [isSticky, setSticky] = useState(false);
+    
+     useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);*/}
+  
   const navItems = <>
    <li><a href='/'>Home</a></li>
       <li>
