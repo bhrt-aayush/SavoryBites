@@ -1,21 +1,27 @@
-import React from 'react'
-import SB from '/SB.png'
+import React, { useState, useEffect } from 'react'; 
+import SB from '/SB.png';
 import { FiPhoneCall } from "react-icons/fi";
 
 const Navbar = () => {
-  {/*const [isSticky, setSticky] = useState(false);
+  const [isSticky, setSticky] = useState(false);
     
      useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      const offset = window.scrollY;
+      if (offset> 0) {
         setSticky(true);
       } else {
         setSticky(false);
       }
     };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);*/}
-  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+    
+  }, [])
+    
   const navItems = <>
    <li><a href='/'>Home</a></li>
       <li>
