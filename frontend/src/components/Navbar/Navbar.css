@@ -32,8 +32,8 @@
     transition: 0.3s;
 }
 .navbar button:hover{
-    background-color:gainsboro;
-    color: crimson;
+    background-color:#45a049;
+    color: whitesmoke;
 }
 
 .navbar .active{

@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
-import './Cart.css';
-import { StoreContext } from '../../context/StoreContext';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useContext } from "react";
+import "./Cart.css";
+import { StoreContext } from "../../context/StoreContext";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } = useContext(StoreContext);
+  const { cartItems, food_list, removeFromCart ,getTotalCartAmount } = useContext(StoreContext);
   const navigate = useNavigate();
-
   return (
     <div className="cart">
       <div className="cart-items">
@@ -14,84 +12,64 @@ const Cart = () => {
           <p>Items</p>
           <p>Title</p>
           <p>Price</p>
+          <p>Description</p>
           <p>Quantity</p>
           <p>Total</p>
           <p>Remove</p>
         </div>
         <br />
         <hr />
-        {/* Check if food_list and cartItems are valid */}
-        {food_list.length > 0 && Object.keys(cartItems).length > 0 ? (
-          food_list.map((item) => {
-            const quantity = cartItems[item._id]; // Get quantity from cartItems
-            if (quantity > 0) {
-              return (
-                <div key={item._id}>
-                  <div className="cart-items-title cart-items-item">
-                    <img src={`${url}/images/${item.image}`} alt={item.name} />
-                    <p>{item.name}</p>
-                    <p>${item.price}</p>
-                    <p>{quantity}</p>
-                    <p>${item.price * quantity}</p>
-                    <p
-                      onClick={() => removeFromCart(item._id)}
-                      className="cross"
-                      role="button"
-                      aria-label={`Remove ${item.name}`}
-                    >
-                      x
-                    </p>
-                  </div>
-                  <hr />
-                </div>
-              );
-            }
-            return null;
-          })
-        ) : (
-          <p>Your cart is empty!</p>
-        )}
-      </div>
 
+        {food_list.map((item, index) => {
+          if (cartItems[item._id] > 0) {
+            return (
+              <div>
+                <div className="cart-items-title cart-items-item">
+                  <img src={item.image} alt="" />
+                  <p>{item.name}</p>
+                  <p>रु{item.price}</p>
+                  <p>{item.description}</p>
+                  <p>{cartItems[item._id]}</p>
+                  <p>रु{item.price * cartItems[item._id]}</p>
+                  <p onClick={() => removeFromCart(item._id)} className="cross">x</p>
+                </div>
+                <hr />
+              </div>
+            );
+          }
+        })}
+      </div>
       <div className="cart-bottom">
         <div className="cart-total">
           <h2>Cart Total</h2>
           <div>
-            <div className="cart-total-detail">
-              <p>Subtotal</p>
-              <p>${getTotalCartAmount()}</p>
+            <div className="cart-total-details">
+            <p>Subtotal</p>
+            <p>रु{getTotalCartAmount()}</p>
             </div>
-            <hr />
-            <div className="cart-total-detail">
-              <p>Delivery Fee</p>
-              <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
+            <div className="cart-total-details">
+            <p>Delivery Fee</p>
+            <p>रु{50}</p>
             </div>
-            <hr />
-            <div className="cart-total-detail">
-              <b>Total</b>
-              <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
+            <div className="cart-total-details">
+            <b>Total:</b>
+            <b>{getTotalCartAmount()+50}</b>
             </div>
           </div>
-          <button
-            onClick={() => navigate('/order')}
-            disabled={getTotalCartAmount() === 0}
-          >
-            PROCEED TO CHECKOUT
-          </button>
+          <button onClick={()=> navigate('/order')}>PROCEED TO CHECKOUT</button>
         </div>
-
         <div className="cart-suggestion">
           <div>
             <p>If you have a suggestion, enter it here</p>
-            <div className="cart-suggestion-input">
-              <input type="text" placeholder="Suggestion" />
+            <div className='cart-suggestion-input'>
+              <input type="text" placeholder='Suggestion'/>
               <button>Submit</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart
