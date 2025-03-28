@@ -3,7 +3,7 @@ import "./Cart.css";
 import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart ,getTotalCartAmount } = useContext(StoreContext);
+  const { cartItems, food_list, removeFromCart, getTotalCartAmount } = useContext(StoreContext);
   const navigate = useNavigate();
   return (
     <div className="cart">
@@ -44,25 +44,25 @@ const Cart = () => {
           <h2>Cart Total</h2>
           <div>
             <div className="cart-total-details">
-            <p>Subtotal</p>
-            <p>रु{getTotalCartAmount()}</p>
+              <p>Subtotal</p>
+              <p>रु{getTotalCartAmount()}</p>
             </div>
             <div className="cart-total-details">
-            <p>Delivery Fee</p>
-            <p>रु{getTotalCartAmount()===0?0:50}</p>
+              <p>Delivery Fee</p>
+              <p>रु{getTotalCartAmount() === 0 ? 0 : 50}</p>
             </div>
             <div className="cart-total-details">
-            <b>Total:</b>
-            <b>रु{getTotalCartAmount()===0?0:getTotalCartAmount()+50}</b>
+              <b>Total:</b>
+              <b>रु{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 50}</b>
             </div>
           </div>
-          <button onClick={()=> navigate('/order')}>PROCEED TO CHECKOUT</button>
+          <button onClick={() => navigate('/placeorder')}>PROCEED TO CHECKOUT</button>
         </div>
         <div className="cart-suggestion">
           <div>
             <p>If you have a suggestion, enter it here</p>
             <div className='cart-suggestion-input'>
-              <input type="text" placeholder='Suggestion'/>
+              <input type="text" placeholder='Suggestion' />
               <button>Submit</button>
             </div>
           </div>

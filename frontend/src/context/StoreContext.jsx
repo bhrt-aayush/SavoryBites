@@ -1,51 +1,49 @@
-import { createContext, useEffect, useState } from "react"
-import { food_list } from "../assets/frontend_assets/assets.js"
+import { createContext, useState } from "react";
+import { food_list } from "../assets/frontend_assets/assets.js";
 
-export const StoreContext = createContext(null)
+export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-    const [cartItems, setcartItems] = useState({});
+    const [cartItems, setCartItems] = useState({});
+    const [userInfo, setUserInfo] = useState({}); // Store user info
 
-     const addToCart = (itemId) =>{
-        if (!cartItems[itemId]){
-            setcartItems((prev)=>({...prev,[itemId]:1}))
-        }
-        else{
-            setcartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}))
-        }
-     }
+    const addToCart = (itemId) => {
+        setCartItems((prev) => ({
+            ...prev,
+            [itemId]: prev[itemId] ? prev[itemId] + 1 : 1,
+        }));
+    };
 
-     const removeFromCart = (itemId) =>{
+    const removeFromCart = (itemId) => {
+        setCartItems((prev) => ({
+            ...prev,
+            [itemId]: prev[itemId] > 1 ? prev[itemId] - 1 : 0,
+        }));
+    };
 
-       setcartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
-     }
+    const getTotalCartAmount = () => {
+        return Object.entries(cartItems).reduce((total, [id, qty]) => {
+            const item = food_list.find((product) => product._id === id);
+            return item ? total + item.price * qty : total;
+        }, 0);
+    };
 
-     const getTotalCartAmount = () => {
-        let totalAmount = 0;
-        for (const item in cartItems) {
-            if (cartItems[item] > 0) {
-                let itemInfo = food_list.find((product) => product._id === item);
-                totalAmount += itemInfo.price * cartItems[item];
-            }
-
-        }
-
-        return totalAmount;
-    }
-
-    const contextValue ={
+    const contextValue = {
         food_list,
         cartItems,
-        setcartItems,
+        setCartItems,
         addToCart,
         removeFromCart,
-        getTotalCartAmount
-    }
-    return(
+        getTotalCartAmount,
+        userInfo,
+        setUserInfo, // Function to update user info
+    };
+
+    return (
         <StoreContext.Provider value={contextValue}>
             {props.children}
         </StoreContext.Provider>
-    )
-}
+    );
+};
 
-export default StoreContextProvider
+export default StoreContextProvider;

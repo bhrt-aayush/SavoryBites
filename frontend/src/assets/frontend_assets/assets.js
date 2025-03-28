@@ -348,3 +348,13 @@ export const food_list = [
         category: "Noodles"
     }
 ]
+
+/**
+ *  # Explanation
+ * -> This is an API connection file where we can fetch data from the server
+ * -> We can fetch data from the server using the fetch() method,  the data needs to be properly formatted
+ * -> The data fetched will be in JSON format (JavaScript Object Notation)
+ * export const food_list = fetch('http://localhost:5000/api/food').then(res => res.json())
+ * 
+ * 
+ */
