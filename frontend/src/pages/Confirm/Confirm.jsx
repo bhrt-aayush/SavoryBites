@@ -15,6 +15,7 @@ const Checkout = () => {
                 <p><b>Email:</b> {userInfo.email}</p>
                 <p><b>Address:</b> {userInfo.street}, {userInfo.city}, {userInfo.zipcode}</p>
                 <p><b>Phone:</b> {userInfo.phone}</p>
+                <p><b>Suggestion:</b> {userInfo.suggestion}</p>
             </div>
 
             <div className="checkout-payment-summary">

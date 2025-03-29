@@ -15,6 +15,7 @@ const PlaceOrder = () => {
     city: '',
     zipcode: '',
     phone: '',
+    suggestion: '',
   });
 
   const handleChange = (e) => {
@@ -45,6 +46,7 @@ const PlaceOrder = () => {
           <input required name='zipcode' type="text" placeholder='Zip code' onChange={handleChange} />
         </div>
         <input required name='phone' type="text" placeholder='Phone' onChange={handleChange} />
+        <input name='suggestion' type="text" placeholder='Suggestion' onChange={handleChange} />
       </div>
       <div className="place-order-right">
         <div className="cart-total">
